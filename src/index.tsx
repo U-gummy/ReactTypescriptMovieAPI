@@ -1,28 +1,24 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import React from "react"
+import ReactDOM from "react-dom"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage"
+import Header from "./components/Header/Header"
+import HomePage from "./components/HomePage/HomePage"
 import MovieDetail from "./components/MovieDetail/MovieDetail"
 
 ReactDOM.render(
     <React.Fragment>
         <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                    </ul>
-                </nav>
+            <Header />
+            <div className='container'>
                 <Switch>
-                <Route exact path="/">
-                    <LandingPage />
-                </Route>
-                <Route exact path="/detail/:movId" component={MovieDetail}>
-                </Route>
+                    <Route exact path='/'>
+                        <HomePage />
+                    </Route>
+                    <Route exact path='/detail/:movId'>
+                        <MovieDetail />
+                    </Route>
                 </Switch>
             </div>
         </Router>
     </React.Fragment>
-, document.getElementById("app"))
+, document.getElementById('app'))

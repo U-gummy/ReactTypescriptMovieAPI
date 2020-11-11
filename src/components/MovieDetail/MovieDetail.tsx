@@ -16,12 +16,13 @@ const MovieDetail : React.FC<RouteComponentProps<routerProps>> = ({ match }) => 
         .then(function(response){
             setMovieDetaliInfo(response.data)
         })
-    }, [])
+    }, []);
+    
     console.log('MovieDetaliInfo: ', MovieDetaliInfo);
   
     return (
         <React.Fragment>
-            <img src={IMAGE_URL+MovieDetaliInfo.backdrop_path} alt=""/>
+            <img src={IMAGE_URL+MovieDetaliInfo.backdrop_path} alt="" className='image'/>
             <h2>{MovieDetaliInfo.original_title}</h2>
             <p>{MovieDetaliInfo.overview}</p>
             <p>{MovieDetaliInfo.vote_average}</p>
