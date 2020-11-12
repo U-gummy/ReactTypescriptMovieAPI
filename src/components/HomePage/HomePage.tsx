@@ -10,21 +10,20 @@ const HomePage : React.FC = () => {
     const [MovieList, setMovieList] = useState<Array<string>>([]);
     
     useEffect(() => {
-        const movie_popular = `${URL}movie/popular/?api_key=${API_KEY}&page=1`
-        const media_all = `${URL}trending/all/week?api_key=${API_KEY}&page=1`
-        Axios.get(media_all)
-        .then(function(response) {
+        const movie_popular = `${URL}movie/popular/?api_key=${API_KEY}&language=ko-KR`
+        const media_all = `${URL}trending/all/week?api_key=${API_KEY}&language=ko-KR`
+        Axios.get(media_all).then(function(response) {
             setAllMedia(response.data.results)
-            setMovieList(response.data.results)
+        })
+        Axios.get(movie_popular).then(function(response) {
+            setMovieList(response.data.results);
         })
     }, [])
-    
 
     return (
         <React.Fragment>
             <MainVisual visualData={AllMedia}/>
-            <MediaListBox movieData={MovieList}/>
-
+            <MediaListBox allMedia={AllMedia} movieData={MovieList} />
         </React.Fragment>
     )
 }

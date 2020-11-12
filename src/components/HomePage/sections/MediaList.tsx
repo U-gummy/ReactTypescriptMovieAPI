@@ -1,47 +1,37 @@
-import React,{ useEffect, useState , memo} from 'react';
+import React,{ memo } from 'react';
 import { IMAGE_URL } from '../../../key'
-import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-
 interface movieProps {
     data : any,
 }
+ 
 
+const popView = (e:any) => {
+    // var pop = e.target.parentNode;
+   
+    // pop.classList.add('hover');
+}
+
+const popHide = (e:any) => {
+    // e.target.parentNode.classList.remove('hover');
+}
 const MovieListItem : React.FC<movieProps> = memo(props => {
     const { data } = props;
-    return (
-        // { movieData&& movieData.map(function(item:any, i:number){
-        //     return (
-        //         <MediaList key={i} data={item} idx={i}/>
-        //     )
-        // })}
-        <ul className='media-list'>
-            {data && data.map(function(item:any, i:number){
-                 return (
-                    <li key={i}>
-                        <img src={IMAGE_URL+'w500'+item.poster_path} alt="포스터" className='image'/>
-                    </li>
-                 )
-            })}
-            
-        </ul>
 
-
-
-
-
-        // <Link to={`/detail/${data.id}`}>
-        //     <div className='movie-item' key={idx}>
-        //         <div className='image-box'>
-        //             {idx < 10 ? <span className='number'>{idx+1}</span> : null}
-                    
-        //             <img src={IMAGE_URL+data.poster_path} alt="포스터"/>
-        //         </div>
-        //         <div className='movie-info'>
-        //             <strong className='tit'>{data.original_title}</strong>
-        //             <p className="desc">{data.overview}</p>
-        //         </div>
-        //     </div>
-        // </Link>
+    return (    
+        <div className='media-list-box'>
+            <ul className='media-list' data-count={0}>
+                {data && data.map(function(item:any, i:number){
+                    return (
+                        <li key={i}>
+                            <div className='view-box' onMouseEnter={popView} onMouseLeave={popHide}>
+                                <img src={IMAGE_URL+'w500'+item.poster_path} alt="포스터" className='image'/>
+                            </div>
+                        </li>
+                    )
+                })}
+                
+            </ul>
+        </div>
     )
 });
 

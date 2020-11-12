@@ -9,18 +9,18 @@ const randomNum = Math.floor(Math.random() * 10);
 const MainVisual : React.FC<visualProps> = props => {
     const { visualData } = props
     const Visual = visualData[randomNum];
-    console.log('Visual: ', randomNum,Visual);
     return (
         <>
             {Visual && (
                 <div className='visual-content'>
+                    <div className='gradient top'></div>
                     <div className='v-txt-box'>
                         <span className='meida'>{Visual.media_type}</span>
                         <h2 className='tit'>
                             {
                                 Visual.media_type == 'tv' ? 
-                                Visual.original_name
-                                :Visual.original_title
+                                Visual.name
+                                :Visual.title
                             }
                         </h2>
                         <strong className='ranking-info'>
@@ -31,6 +31,7 @@ const MainVisual : React.FC<visualProps> = props => {
                         <button type='button' className='btn-detali'>상세정보</button>
                     </div>
                     <img src={IMAGE_URL+'w1280'+Visual.backdrop_path} alt="" className='image'/>
+                    <div className='gradient'></div>
                 </div>
                 )
             }
